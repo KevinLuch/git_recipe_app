@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Edit {{edit_recipe.name}}</h1>
+    <div>
+        {% with messages = get_flashed_messages() %} 
+        {% if messages %} 
+            {% for message in messages %} 
+                <p>{{message}}</p>
+            {% endfor %} 
+        {% endif %}
+        {% endwith %}
+        </div>
+    <p><a href="/recipes/all">View your Recipes</a></p>
+    <p><a href="/destroy">Logout</a></p>
+    <form action="/update/recipe" method='POST'>
+        <input type="hidden" name="id" value="{{edit_recipe.id}}">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" value="{{edit_recipe.name}}">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" name="description" value="{{edit_recipe.description}}">
+            <!-- <textarea class="form-control" name="description" value="{{edit_recipe.description}}"></textarea>  -->
+        </div>
+        
+        <div class="form-group">
+            <label for="instructions">Instructions</label>
+            <input type="text" class="form-control" name="instructions" value="{{edit_recipe.instructions}}">
+            <!-- <textarea class="form-control" name="instructions" value="{{edit_recipe.instructions}}"></textarea> -->
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</body>
+</html>
